@@ -39,11 +39,16 @@
             <a href="{{route('Kontak.kontak')}}" class="hover:text-yellow-300 transition duration-300" data-aos="fade-left">Kontak Kami</a>
             <div class="relative dropdown">
                 <button class="hover:text-yellow-300 focus:outline-none transition duration-300 flex items-center">
-                    Pengguna <i class="fas fa-chevron-down ml-1"></i>
+                    {{ Auth::user()->name }} <i class="fas fa-chevron-down ml-1"></i>
                 </button>
                 <div class="dropdown-menu">
-                    <a href="{{ route('login') }}">Login</a>
-                    <a href="{{ route('register') }}">Register</a>
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                    <a href="route('logout')"
+                    onclick="event.preventDefault();
+                                this.closest('form').submit();">
+                {{ __('Log Out') }}</a>
+                    </form>
                 </div>
             </div>
             <form class="relative">
@@ -86,10 +91,15 @@
                     <i class="fas fa-envelope mr-2 text-blue-500"></i>
                     Kontak Kami
                 </a>
-                <a href="/login" class="block py-2 px-4 text-gray-800 font-semibold hover:bg-blue-100 rounded transition-colors duration-200 flex items-center" data-aos="fade-right">
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                <a href="route('logout')"
+                onclick="event.preventDefault();
+                            this.closest('form').submit();" class="block py-2 px-4 text-gray-800 font-semibold hover:bg-blue-100 rounded transition-colors duration-200 flex items-center" data-aos="fade-right">
                     <i class="fas fa-sign-in-alt mr-2 text-blue-500"></i>
-                    Login
+                    Logout
                 </a>
+                </form>
             </nav>
         </div>
     </div>

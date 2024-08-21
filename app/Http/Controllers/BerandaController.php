@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Informasi;
 
 class BerandaController extends Controller
 {
@@ -13,6 +14,9 @@ class BerandaController extends Controller
      */
     public function index()
     {
-        return view('Beranda.beranda');
+        // Fetch paginated results with 6 items per page
+        $informasi = Informasi::paginate(3);
+
+        return view('Beranda.beranda', compact('informasi'));
     }
 }

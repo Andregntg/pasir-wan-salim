@@ -16,6 +16,7 @@
                 <th>Judul</th>
                 <th>Tanggal Informasi</th>
                 <th>Deskripsi</th>
+                <th>Gambar</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -26,6 +27,13 @@
                 <td>{{ $info->judul }}</td>
                 <td>{{ $info->tanggal_informasi }}</td>
                 <td>{{ $info->deskripsi }}</td>
+                <td>
+                    @if($info->gambar)
+                        <img src="{{ asset('storage/' . $info->gambar) }}" alt="{{ $info->judul }}" style="width: 100px; height: auto;">
+                    @else
+                        <img src="https://via.placeholder.com/100" alt="Placeholder" style="width: 100px; height: auto;">
+                    @endif
+                </td>
                 <td>
                     <a href="{{ route('informasi.show', $info->id_informasi) }}" class="btn btn-info">View</a>
                     <a href="{{ route('informasi.edit', $info->id_informasi) }}" class="btn btn-warning">Edit</a>

@@ -16,6 +16,8 @@ return new class extends Migration
             $table->string('judul', 255);
             $table->date('tanggal_informasi');
             $table->text('deskripsi');
+            $table->string('gambar')->nullable(); // Kolom untuk menyimpan path atau URL gambar
+
             $table->timestamps();
         });
     }

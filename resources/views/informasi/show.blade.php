@@ -1,20 +1,31 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <h1>Informasi Details</h1>
-    <div class="form-group">
-        <label for="judul">Judul</label>
-        <input type="text" class="form-control" id="judul" name="judul" value="{{ $informasi->judul }}" readonly>
+<div class="container mx-auto p-6">
+    <!-- Title and Date -->
+    <div class="mb-6">
+        <h1 class="text-4xl font-bold text-blue-700 mb-2">{{ $informasi->judul }}</h1>
+        <p class="text-gray-600 text-lg">{{ \Carbon\Carbon::parse($informasi->tanggal_informasi)->format('d F Y') }}</p>
     </div>
-    <div class="form-group">
-        <label for="tanggal_informasi">Tanggal Informasi</label>
-        <input type="date" class="form-control" id="tanggal_informasi" name="tanggal_informasi" value="{{ $informasi->tanggal_informasi }}" readonly>
+
+    <!-- Image -->
+    @if($informasi->gambar)
+        <div class="mb-6">
+            <img src="{{ asset('storage/' . $informasi->gambar) }}" alt="{{ $informasi->judul }}" class="w-full h-auto max-h-96 object-cover rounded-lg shadow-lg">
+        </div>
+    @endif
+
+    <!-- Description -->
+    <div class="mb-6">
+        <p class="text-lg text-gray-800">{{ $informasi->deskripsi }}</p>
     </div>
-    <div class="form-group">
-        <label for="deskripsi">Deskripsi</label>
-        <textarea class="form-control" id="deskripsi" name="deskripsi" rows="3" readonly>{{ $informasi->deskripsi }}</textarea>
+
+    <!-- Back Button -->
+    <div>
+        <a href="{{ route('Berita.informasi') }}" class="btn-back flex items-center space-x-2 text-blue-600 hover:text-blue-800 hover:underline">
+            <i class="fas fa-arrow-left"></i>
+            <span>Kembali</span>
+        </a>
     </div>
-    <a href="{{ route('informasi.index') }}" class="btn btn-primary">Back</a>
 </div>
 @endsection

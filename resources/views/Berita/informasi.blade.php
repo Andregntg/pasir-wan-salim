@@ -11,37 +11,20 @@
 
         <!-- Informasi Section -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <!-- Informasi Card 1 -->
-            <div class="bg-white rounded-lg shadow-lg overflow-hidden" data-aos="fade-up">
-                <img src="https://via.placeholder.com/800x400" alt="Berita 1" class="w-full h-48 object-cover">
-                <div class="p-4">
-                    <h2 class="text-2xl font-semibold text-blue-800 mb-2">Judul Informasi 1</h2>
-                    <p class="text-gray-600 mb-4">Deskripsi singkat mengenai informasi atau berita terbaru yang ada di kelurahan.</p>
-                    <a href="/informasi/1" class="text-blue-500 hover:underline">Baca selengkapnya</a>
+            @foreach($informasi as $item)
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden" data-aos="fade-up">
+                    @if($item->gambar)
+                        <img src="{{ asset('storage/' . $item->gambar) }}" alt="{{ $item->judul }}" class="w-full h-48 object-cover">
+                    @else
+                        <img src="https://via.placeholder.com/800x400" alt="Placeholder" class="w-full h-48 object-cover">
+                    @endif
+                    <div class="p-4">
+                        <h2 class="text-2xl font-semibold text-blue-800 mb-2">{{ $item->judul }}</h2>
+                        <p class="text-gray-600 mb-4">{{ Str::limit($item->deskripsi, 100) }}</p>
+                        <a href="{{ route('informasi.show', $item->id_informasi) }}" class="text-blue-500 hover:underline">Baca selengkapnya</a>
+                    </div>
                 </div>
-            </div>
-
-            <!-- Informasi Card 2 -->
-            <div class="bg-white rounded-lg shadow-lg overflow-hidden" data-aos="fade-up">
-                <img src="https://via.placeholder.com/800x400" alt="Berita 2" class="w-full h-48 object-cover">
-                <div class="p-4">
-                    <h2 class="text-2xl font-semibold text-blue-800 mb-2">Judul Informasi 2</h2>
-                    <p class="text-gray-600 mb-4">Deskripsi singkat mengenai informasi atau berita terbaru yang ada di kelurahan.</p>
-                    <a href="/informasi/2" class="text-blue-500 hover:underline">Baca selengkapnya</a>
-                </div>
-            </div>
-
-            <!-- Informasi Card 3 -->
-            <div class="bg-white rounded-lg shadow-lg overflow-hidden" data-aos="fade-up">
-                <img src="https://via.placeholder.com/800x400" alt="Berita 3" class="w-full h-48 object-cover">
-                <div class="p-4">
-                    <h2 class="text-2xl font-semibold text-blue-800 mb-2">Judul Informasi 3</h2>
-                    <p class="text-gray-600 mb-4">Deskripsi singkat mengenai informasi atau berita terbaru yang ada di kelurahan.</p>
-                    <a href="/informasi/3" class="text-blue-500 hover:underline">Baca selengkapnya</a>
-                </div>
-            </div>
-
-            <!-- Tambahkan lebih banyak kartu informasi jika diperlukan -->
+            @endforeach
         </div>
     </div>
 @endsection

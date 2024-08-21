@@ -13,7 +13,7 @@
     @vite('resources/css/admin.css')
     @vite('resources/js/admin.js')
 </head>
-
+    
 <body>
     <div class="d-flex" id="wrapper">
         <!-- Sidebar -->
